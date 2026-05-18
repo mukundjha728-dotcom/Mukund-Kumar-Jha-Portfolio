@@ -57,7 +57,7 @@ const Navbar = () => {
             ))}
 
             <a
-              href="https://drive.google.com/file/d/16y6Z5P4me6FD8MdwgpIGYRHO4qo17-EL/view?usp=sharing"
+              href="https://drive.google.com/file/d/1V3AdZcsOysQ3dUU_ZG258U31712qkfzu/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-2 px-5 py-2 border-2 border-slate-900 bg-transparent text-slate-900 font-bold uppercase text-sm tracking-wider hover:bg-slate-900 hover:text-[#f4f1ea] transition-all duration-200"
@@ -103,7 +103,7 @@ const Navbar = () => {
               ))}
               <div className="pt-4 pb-2 px-4">
                 <a
-                  href="https://drive.google.com/file/d/16y6Z5P4me6FD8MdwgpIGYRHO4qo17-EL/view?usp=sharing"
+                  href="https://drive.google.com/file/d/1V3AdZcsOysQ3dUU_ZG258U31712qkfzu/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 w-full px-5 py-3 border-2 border-slate-900 bg-slate-900 text-[#f4f1ea] font-bold uppercase tracking-wider hover:bg-transparent hover:text-slate-900 transition-colors"
