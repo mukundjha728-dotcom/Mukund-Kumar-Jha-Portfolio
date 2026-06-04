@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  FaEnvelope,
-  FaMapMarkerAlt,
-  FaPaperPlane,
-  FaCommentDots,
-  FaCheckCircle,
-} from "react-icons/fa";
+import { Mail, MapPin, Send, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Contact = () => {
@@ -14,75 +8,56 @@ const Contact = () => {
     email: "",
     message: "",
   });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState("idle"); // idle, success, error
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    const data = {
-      ...formData,
-      access_key: "5433ac65-63bf-43c8-8b46-b90077e35aa9",
-    };
+    setSubmitStatus("idle");
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const form = e.target;
+      const data = new FormData(form);
+      const response = await fetch("https://formspree.io/f/mqaeldyd", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(data),
+        body: data,
+        headers: { Accept: "application/json" },
       });
 
-      const result = await response.json();
-
-      if (result.success) {
-        setIsSuccess(true);
+      if (response.ok) {
+        setSubmitStatus("success");
         setFormData({ name: "", email: "", message: "" });
-
-        setTimeout(() => {
-          setIsSuccess(false);
-        }, 3000);
+        form.reset();
+      } else {
+        setSubmitStatus("error");
       }
     } catch (error) {
-      console.error("Error sending message:", error);
-      alert("Something went wrong. Please try again.");
+      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus("idle"), 5000);
     }
   };
 
   const fadeUp = {
     hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-    },
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
-    },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
   return (
-    <section
-      id="contact"
-      className="py-24 bg-[#f4f1ea] border-t-4 border-slate-900 relative overflow-hidden font-['Old_Standard_TT'] text-slate-900"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
+    <section id="contact" className="py-24 bg-transparent relative overflow-hidden">
+      {/* Decorative background */}
+      <div className="absolute top-[20%] left-[-10%] w-[40%] h-[40%] bg-accent/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -90,86 +65,59 @@ const Contact = () => {
           variants={fadeUp}
           className="text-center max-w-3xl mx-auto mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-black font-['Playfair_Display'] text-slate-900 mb-6 tracking-tight uppercase border-b-2 border-slate-900 inline-block pb-2">
-            Letters to the Editor
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tight">
+            Let's <span className="text-accent">Connect</span>.
           </h2>
-          <p className="text-lg text-slate-700 font-bold italic mt-4">
-            Have a project in mind or want to discuss opportunities? I'd love to
-            hear from you.
+          <p className="text-lg text-secondary">
+            Interested in collaborating or have a project in mind? Let's discuss how we can build something amazing together.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
           {/* Left Column: Contact Info */}
           <motion.div
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            variants={staggerContainer}
-            className="lg:col-span-2 space-y-8"
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5 space-y-8"
           >
-            <motion.div
-              variants={fadeUp}
-              className="bg-transparent p-8 rounded-none border-2 border-slate-900 shadow-[8px_8px_0_0_rgba(15,23,42,1)]"
-            >
-              <h3 className="text-2xl font-black font-['Playfair_Display'] text-slate-900 mb-8 uppercase border-b-2 border-slate-900 pb-2 inline-block">
-                Contact Details
-              </h3>
-
-              <div className="space-y-8">
-                <a
-                  href="mailto:mukundjha728@gmail.com"
-                  className="flex items-center space-x-5 group"
-                >
-                  <div className="p-4 bg-slate-900 border-2 border-slate-900 text-[#f4f1ea] rounded-none shadow-[2px_2px_0_0_rgba(15,23,42,1)] group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:shadow-[4px_4px_0_0_rgba(15,23,42,1)] transition-all duration-300">
-                    <FaEnvelope size={22} />
+            <div className="glass p-8 rounded-3xl h-full flex flex-col justify-center">
+              <h3 className="text-2xl font-bold text-white mb-8">Contact Information</h3>
+              
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-white/5 rounded-xl border border-white/10 text-accent">
+                    <Mail size={24} />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-700 uppercase tracking-widest mb-1.5">
-                      Direct Line
-                    </p>
-                    <p className="text-slate-900 font-bold font-['Playfair_Display'] text-lg hover:underline transition-colors">
+                    <p className="text-sm text-secondary font-medium mb-1">Email</p>
+                    <a href="mailto:mukundjha728@gmail.com" className="text-lg font-semibold text-white hover:text-accent transition-colors">
                       mukundjha728@gmail.com
-                    </p>
+                    </a>
                   </div>
-                </a>
+                </div>
 
-                <div className="flex items-center space-x-5 group cursor-default">
-                  <div className="p-4 bg-slate-900 border-2 border-slate-900 text-[#f4f1ea] rounded-none shadow-[2px_2px_0_0_rgba(15,23,42,1)] transition-all duration-300">
-                    <FaMapMarkerAlt size={22} />
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-white/5 rounded-xl border border-white/10 text-accent">
+                    <MapPin size={24} />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-700 uppercase tracking-widest mb-1.5">
-                      Headquarters
-                    </p>
-                    <p className="text-slate-900 font-bold font-['Playfair_Display'] text-lg">
-                      India
+                    <p className="text-sm text-secondary font-medium mb-1">Location</p>
+                    <p className="text-lg font-semibold text-white">
+                      Delhi NCR, India
                     </p>
                   </div>
                 </div>
               </div>
-            </motion.div>
 
-            <motion.div
-              variants={fadeUp}
-              className="bg-slate-900 p-8 rounded-none text-[#f4f1ea] shadow-[8px_8px_0_0_rgba(15,23,42,0.5)] border-2 border-slate-900 relative overflow-hidden group"
-            >
-              <div className="relative z-10">
-                <div className="flex items-center space-x-3 mb-3 border-b border-slate-700 pb-2">
-                  <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#f4f1ea] opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
-                  </span>
-                  <h4 className="font-bold text-lg text-[#f4f1ea] uppercase tracking-widest">
-                    Classified: Available
-                  </h4>
-                </div>
-                <p className="text-slate-300 text-sm leading-relaxed font-bold italic mt-4">
-                  "I'm currently looking for new opportunities as a MERN Stack
-                  Developer. Wire me a message for business inquiries."
+              <div className="mt-12 pt-8 border-t border-border">
+                <p className="text-secondary text-sm leading-relaxed">
+                  I'm currently available for freelance work and full-time opportunities. If you have a project that needs some creative and technical magic, I'd love to hear from you.
                 </p>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* Right Column: Contact Form */}
@@ -177,26 +125,14 @@ const Contact = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="lg:col-span-3"
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-7"
           >
-            <div className="bg-transparent p-8 md:p-10 rounded-none border-4 border-slate-900 shadow-[12px_12px_0_0_rgba(15,23,42,1)] bg-white">
-              <div className="flex items-center space-x-4 mb-10 border-b-2 border-slate-900 pb-4">
-                <FaCommentDots className="text-slate-900" size={32} />
-                <h3 className="text-3xl font-black font-['Playfair_Display'] text-slate-900 uppercase">
-                  Telegram Form
-                </h3>
-              </div>
-
+            <div className="glass p-8 lg:p-10 rounded-3xl">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-bold text-slate-900 mb-2 uppercase tracking-wider"
-                    >
-                      Given Name
-                    </label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-sm font-medium text-secondary ml-1">Name</label>
                     <input
                       type="text"
                       id="name"
@@ -204,18 +140,12 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-5 py-4 bg-[#f4f1ea] border-2 border-slate-900 rounded-none focus:outline-none focus:ring-0 focus:bg-white text-slate-900 placeholder-slate-500 font-bold transition-all duration-300 shadow-[inset_4px_4px_0_0_rgba(15,23,42,0.1)]"
+                      className="w-full bg-surface2 border border-border text-white px-5 py-3.5 rounded-xl focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all placeholder:text-slate-600"
                       placeholder="John Doe"
                     />
                   </div>
-
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-bold text-slate-900 mb-2 uppercase tracking-wider"
-                    >
-                      Electronic Mail
-                    </label>
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-sm font-medium text-secondary ml-1">Email</label>
                     <input
                       type="email"
                       id="email"
@@ -223,19 +153,14 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-5 py-4 bg-[#f4f1ea] border-2 border-slate-900 rounded-none focus:outline-none focus:ring-0 focus:bg-white text-slate-900 placeholder-slate-500 font-bold transition-all duration-300 shadow-[inset_4px_4px_0_0_rgba(15,23,42,0.1)]"
+                      className="w-full bg-surface2 border border-border text-white px-5 py-3.5 rounded-xl focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all placeholder:text-slate-600"
                       placeholder="john@example.com"
                     />
                   </div>
                 </div>
 
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-bold text-slate-900 mb-2 uppercase tracking-wider"
-                  >
-                    The Dispatch
-                  </label>
+                <div className="space-y-2">
+                  <label htmlFor="message" className="text-sm font-medium text-secondary ml-1">Message</label>
                   <textarea
                     id="message"
                     name="message"
@@ -243,37 +168,49 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows="5"
-                    className="w-full px-5 py-4 bg-[#f4f1ea] border-2 border-slate-900 rounded-none focus:outline-none focus:ring-0 focus:bg-white text-slate-900 placeholder-slate-500 font-bold transition-all duration-300 resize-none shadow-[inset_4px_4px_0_0_rgba(15,23,42,0.1)]"
-                    placeholder="STOP. Write your message here. STOP."
+                    className="w-full bg-surface2 border border-border text-white px-5 py-3.5 rounded-xl focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all placeholder:text-slate-600 resize-none"
+                    placeholder="Tell me about your project..."
                   ></textarea>
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-center sm:space-x-6 space-y-4 sm:space-y-0 pt-4">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={`group w-full sm:w-auto flex items-center justify-center space-x-3 px-8 py-4 bg-slate-900 text-[#f4f1ea] border-2 border-slate-900 font-black font-['Playfair_Display'] tracking-widest uppercase rounded-none hover:bg-white hover:text-slate-900 shadow-[4px_4px_0_0_rgba(15,23,42,1)] transition-all duration-300 ${isSubmitting ? "opacity-70 cursor-not-allowed" : "hover:-translate-y-1 hover:shadow-[6px_6px_0_0_rgba(15,23,42,1)]"}`}
-                  >
-                    <span>{isSubmitting ? "Transmitting..." : "Send Dispatch"}</span>
-                    {!isSubmitting && (
-                      <FaPaperPlane
-                        size={16}
-                        className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"
-                      />
-                    )}
-                  </button>
-
-                  {/* Success Message Pop-up */}
-                  {isSuccess && (
-                    <motion.span
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className="flex items-center text-slate-900 font-bold bg-white border-2 border-slate-900 px-4 py-2"
-                    >
-                      <FaCheckCircle size={20} className="mr-2" /> Message Sent Successfully!
-                    </motion.span>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full group relative flex justify-center items-center gap-2 px-8 py-4 bg-accent text-white font-semibold rounded-xl hover:bg-accentHover transition-all shadow-[0_0_20px_rgba(99,102,241,0.3)] disabled:opacity-70 disabled:cursor-not-allowed overflow-hidden"
+                >
+                  <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      Send Message
+                    </>
                   )}
-                </div>
+                </button>
+
+                {/* Status Messages */}
+                {submitStatus === "success" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-4 bg-green-500/10 border border-green-500/20 text-green-400 rounded-xl text-center font-medium text-sm"
+                  >
+                    Message sent successfully! I'll get back to you soon.
+                  </motion.div>
+                )}
+                {submitStatus === "error" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded-xl text-center font-medium text-sm"
+                  >
+                    Something went wrong. Please try again later.
+                  </motion.div>
+                )}
               </form>
             </div>
           </motion.div>

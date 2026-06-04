@@ -1,60 +1,61 @@
 import React from "react";
-import { FaGithub, FaExternalLinkAlt, FaLaptopCode } from "react-icons/fa";
+import { ExternalLink, Code2 } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const Projects = () => {
   const projects = [
     {
-      title: "Import Export Website",
+      title: "Import Export Platform",
       company: "VR AND Sons",
       description:
-        "Developed a professional business website to showcase import-export products and services. Implemented structured layouts for product listings and ensured cross-device compatibility.",
-      techStack: ["React.js", "Tailwind CSS", "JavaScript"],
+        "Engineered a scalable B2B platform showcasing import-export operations. Designed with a focus on high performance, secure data presentation, and seamless cross-device compatibility.",
+      techStack: ["React.js", "Tailwind CSS", "Vite"],
       githubLink: "https://github.com/mukundjha728-dotcom",
       liveLink: "https://www.vrandsons.com/",
     },
     {
-      title: "Furniture E-Commerce",
-      company: "Personal Project",
+      title: "Premium E-Commerce",
+      company: "Architecture Project",
       description:
-        "Built a fully responsive e-commerce platform for furniture. Designed intuitive product browsing, filtering, and implemented reusable components for scalability and optimized loading.",
-      techStack: ["React.js", "Tailwind CSS", "JavaScript"],
+        "Architected a high-conversion e-commerce storefront with advanced state management, intelligent filtering, and component-driven development for massive scalability.",
+      techStack: ["React.js", "Tailwind CSS", "Zustand"],
       githubLink: "https://github.com/mukundjha728-dotcom",
       liveLink: "https://furniture-website-8sts.vercel.app/",
     },
     {
-      title: "Email Verifier",
-      company: "Personal Project",
+      title: "Email Verification API",
+      company: "Tooling",
       description:
-        "Engineered a web application to validate email addresses and improve data reliability. Focused on real-time validation, performance optimization, and seamless cross-device compatibility.",
-      techStack: ["JavaScript", "HTML", "CSS"],
+        "Developed a high-throughput validation service ensuring data integrity. Focused on algorithmic efficiency, real-time feedback, and secure endpoint communication.",
+      techStack: ["Node.js", "Express", "React.js"],
       githubLink: "https://github.com/mukundjha728-dotcom",
       liveLink: "https://www.graphurahub.in/",
     },
     {
-      title: "Task Management App",
-      company: "Personal Project",
+      title: "Task Management OS",
+      company: "Productivity",
       description:
-        "Developed a dynamic task management platform. Implemented modular UI components and responsive layouts to improve usability with efficient task organization features.",
-      techStack: ["MongoDB", "Express.js", "React.js", "Node.js"],
+        "Built a robust productivity ecosystem featuring real-time state synchronization, secure authentication flows, and a highly modular UI architecture.",
+      techStack: ["MongoDB", "Express", "React.js", "Node.js"],
       githubLink: "https://github.com/mukundjha728-dotcom",
       liveLink: "https://task-management-liart-nu.vercel.app/",
     },
     {
       title: "School Management System",
-      company: "Personal Project",
+      company: "Enterprise",
       description:
-        "Built a structured system to manage academic information efficiently. Focused on clean design, intuitive navigation, and scalable UI architecture for user-friendly interaction.",
-      techStack: ["MongoDB", "Express.js", "React.js", "Node.js"],
+        "Designed a complex administrative dashboard with role-based access control, secure data querying, and intuitive data visualization interfaces.",
+      techStack: ["MongoDB", "Express", "React.js", "Node.js"],
       githubLink: "https://github.com/mukundjha728-dotcom",
       liveLink: "https://school-management-phi-sandy.vercel.app/",
     },
     {
-      title: "Fruites Bounty",
-      company: "Personal Project",
+      title: "Fruits Bounty UI",
+      company: "Frontend",
       description:
-        "Created a modern product-based website with engaging UI design. Used Tailwind CSS for consistent and efficient styling ensuring perfect responsiveness across multiple devices.",
-      techStack: ["React.js", "Tailwind CSS", "JavaScript"],
+        "Crafted a visually engaging product landing page leveraging modern CSS architectures, micro-animations, and strict performance budgets.",
+      techStack: ["React.js", "Tailwind CSS", "Framer Motion"],
       githubLink: "https://github.com/mukundjha728-dotcom",
       liveLink: "https://www.fruitsbounty.in/",
     },
@@ -62,28 +63,20 @@ const Projects = () => {
 
   const fadeUp = {
     hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-    },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
   const staggerContainer = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
 
   return (
-    <section
-      id="projects"
-      className="py-24 bg-[#f4f1ea] border-t-4 border-slate-900 relative overflow-hidden font-['Old_Standard_TT'] text-slate-900"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
+    <section id="projects" className="py-24 bg-transparent relative overflow-hidden">
+      {/* Decorative background */}
+      <div className="absolute top-0 left-[20%] w-[50%] h-[50%] bg-indigo-500/5 rounded-full blur-[150px] pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -91,16 +84,14 @@ const Projects = () => {
           variants={fadeUp}
           className="text-center max-w-3xl mx-auto mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-black font-['Playfair_Display'] text-slate-900 mb-6 tracking-tight uppercase border-b-2 border-slate-900 inline-block pb-2">
-            Featured Projects
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tight">
+            Featured <span className="text-accent">Projects</span>.
           </h2>
-          <p className="text-lg text-slate-700 font-bold italic mt-4">
-            A showcase of my recent work, side projects, and web development
-            experiments.
+          <p className="text-lg text-secondary">
+            A curated selection of scalable applications, architectural experiments, and production-ready code.
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -112,56 +103,54 @@ const Projects = () => {
             <motion.div
               variants={fadeUp}
               key={index}
-              className="bg-transparent rounded-none p-8 border-2 border-slate-900 shadow-[8px_8px_0_0_rgba(15,23,42,1)] hover:bg-slate-200 hover:-translate-y-2 transition-all duration-300 flex flex-col h-full relative group"
+              className="glass-card p-8 hover:-translate-y-2 transition-all duration-300 flex flex-col h-full relative group hover:border-accent/50 hover:shadow-[0_10px_40px_-10px_rgba(99,102,241,0.2)]"
             >
-              {/* Card Header (Icons) */}
-              <div className="flex justify-between items-center mb-8 border-b-2 border-slate-900 pb-4">
-                <div className="p-3 bg-slate-900 text-[#f4f1ea] rounded-none border border-slate-900">
-                  <FaLaptopCode className="text-2xl" />
+              {/* Card Header */}
+              <div className="flex justify-between items-center mb-8">
+                <div className="p-3 bg-white/5 rounded-xl border border-white/10 group-hover:bg-accent/20 transition-colors">
+                  <Code2 className="w-6 h-6 text-accent" />
                 </div>
-                <div className="flex space-x-4">
+                <div className="flex space-x-3">
                   <a
                     href={project.githubLink}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-slate-900 hover:text-slate-600 hover:scale-110 transition-all duration-300"
+                    className="text-secondary hover:text-white transition-colors"
                     aria-label="GitHub Repository"
                   >
-                    <FaGithub size={24} />
+                    <FaGithub className="w-5 h-5 hover:scale-110 transition-transform" />
                   </a>
                   <a
                     href={project.liveLink}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-slate-900 hover:text-slate-600 hover:scale-110 transition-all duration-300"
+                    className="text-secondary hover:text-white transition-colors"
                     aria-label="Live Project Link"
                   >
-                    <FaExternalLinkAlt size={22} />
+                    <ExternalLink className="w-5 h-5 hover:scale-110 transition-transform" />
                   </a>
                 </div>
               </div>
 
               {/* Card Body */}
               <div className="flex-grow">
-                <h3 className="text-2xl font-black font-['Playfair_Display'] text-slate-900 mb-2 uppercase">
+                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
                   {project.title}
                 </h3>
-                {project.company !== "Personal Project" && (
-                  <p className="text-xs font-bold text-slate-700 mb-4 tracking-widest uppercase italic">
-                    By {project.company}
-                  </p>
-                )}
-                <p className="text-slate-800 text-sm font-bold leading-relaxed mb-8 text-justify">
+                <p className="text-xs font-mono font-medium text-accent mb-4">
+                  {project.company}
+                </p>
+                <p className="text-secondary text-sm leading-relaxed mb-8">
                   {project.description}
                 </p>
               </div>
 
               {/* Card Footer (Tech Stack) */}
-              <div className="mt-auto flex flex-wrap gap-2 pt-4 border-t border-slate-400">
+              <div className="mt-auto flex flex-wrap gap-2 pt-6 border-t border-border">
                 {project.techStack.map((tech, i) => (
                   <span
                     key={i}
-                    className="text-xs font-bold tracking-wide text-slate-900 bg-transparent px-3 py-1.5 rounded-none border border-slate-900 uppercase"
+                    className="text-xs font-medium text-secondary bg-surface border border-border px-3 py-1.5 rounded-lg"
                   >
                     {tech}
                   </span>
@@ -171,7 +160,6 @@ const Projects = () => {
           ))}
         </motion.div>
 
-        {/* View More Github Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -183,10 +171,10 @@ const Projects = () => {
             href="https://github.com/mukundjha728-dotcom"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center px-8 py-4 text-base font-black font-['Playfair_Display'] text-[#f4f1ea] bg-slate-900 rounded-none hover:bg-slate-800 shadow-[8px_8px_0_0_rgba(15,23,42,1)] hover:-translate-y-1 transition-all duration-300 active:scale-95 uppercase tracking-widest"
+            className="inline-flex items-center justify-center px-8 py-4 text-sm font-semibold text-white bg-white/5 border border-white/10 rounded-full hover:bg-white/10 transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_20px_rgba(99,102,241,0.2)] active:scale-95 gap-3"
           >
-            <FaGithub className="mr-3" size={22} />
-            Explore More on GitHub
+            <FaGithub className="w-5 h-5" />
+            Explore More Architecture
           </a>
         </motion.div>
       </div>

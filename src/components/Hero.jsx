@@ -1,140 +1,135 @@
 import React from "react";
-import { Mail, ArrowRight, Download, MapPin, Terminal } from "lucide-react";
+import { ArrowRight, Mail, MapPin } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 
 const Hero = () => {
+  // Cursor Parallax Logic
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 20, stiffness: 100, mass: 0.5 };
+  const smoothMouseX = useSpring(mouseX, springConfig);
+  const smoothMouseY = useSpring(mouseY, springConfig);
+
+  const rotateX = useTransform(smoothMouseY, [-0.5, 0.5], [10, -10]);
+  const rotateY = useTransform(smoothMouseX, [-0.5, 0.5], [-10, 10]);
+  const translateZ = useTransform(smoothMouseY, [-0.5, 0.5], [-20, 20]);
+
+  const handleMouseMove = (e) => {
+    const { clientX, clientY } = e;
+    const { innerWidth, innerHeight } = window;
+    const x = clientX / innerWidth - 0.5;
+    const y = clientY / innerHeight - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
   return (
-    <section
-      id="home"
-      className="min-h-screen bg-[#f4f1ea] text-slate-900 pt-24 pb-12 px-4 sm:px-6 lg:px-8 flex justify-center font-['Old_Standard_TT'] relative overflow-hidden"
+    <section 
+      id="home" 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent pt-20"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
     >
-      {/* Paper texture overlay */}
-      <div className="absolute inset-0 opacity-40 pointer-events-none mix-blend-multiply" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/cream-paper.png')" }}></div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
+        
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+          className="space-y-8 relative z-10"
+        >
 
-      <div className="max-w-6xl w-full mx-auto relative z-10 flex flex-col">
-
-        {/* Masthead */}
-        <header className="border-b-4 border-slate-900 pb-4 mb-6 flex flex-col items-center justify-center text-center">
-          <div className="flex justify-between w-full uppercase text-xs sm:text-sm font-bold tracking-widest border-b border-slate-900 pb-2 mb-4">
-            <span>Vol 1. No. 1</span>
-            <span>{new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
-            <span>Edition 1</span>
+          <div className="space-y-4">
+            <h1 className="text-5xl md:text-7xl font-black text-white tracking-tight leading-[1.1]">
+              Mukund<br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500">
+                Kumar Jha
+              </span>
+            </h1>
+            <h2 className="text-xl md:text-2xl font-semibold text-white/90">
+              MERN Stack Developer | <span className="font-light text-white/70">Frontend-Focused Full Stack</span>
+            </h2>
+            <p className="text-lg md:text-xl text-secondary max-w-lg leading-relaxed pt-4">
+              Architecting high-performance, scalable web applications. Bridging advanced engineering, interactive 3D motion, and premium design.
+            </p>
           </div>
-          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black font-['Playfair_Display'] tracking-tighter uppercase mb-2">
-            The Daily Dev
-          </h1>
-          <p className="text-sm sm:text-lg italic font-['Playfair_Display'] border-y border-slate-900 py-1 w-full max-w-2xl mx-auto uppercase tracking-widest">
-            "You can make coding look easy"
-          </p>
-        </header>
 
-        {/* Headlines */}
-        <div className="text-center mb-8 border-b-2 border-slate-900 pb-6">
-          <h2 className="text-4xl sm:text-6xl md:text-7xl font-bold font-['Playfair_Display'] uppercase leading-none mb-4">
-            Mukund Kumar Jha
-          </h2>
-          <h3 className="text-xl sm:text-3xl font-bold uppercase tracking-widest border-t-2 border-slate-900 pt-4 mt-2 max-w-4xl mx-auto">
-            MERN-Stack Web Developer Ready for Action
-          </h3>
-        </div>
+          {/* CTAs */}
+          <div className="flex flex-wrap items-center gap-4 pt-4 relative z-30">
+            <a href="#projects" className="group flex items-center gap-3 px-8 py-4 bg-white text-[#050505] font-bold rounded-xl hover:bg-emerald-50 transition-all duration-300 active:scale-95 shadow-[0_0_20px_rgba(52,211,153,0.3)] hover:shadow-[0_0_30px_rgba(52,211,153,0.5)]">
+              View Projects
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </a>
+            <a href="#contact" className="flex items-center gap-3 px-8 py-4 bg-[#121218] text-white font-bold rounded-xl hover:bg-[#1a1a24] transition-all duration-300 active:scale-95 border border-white/15">
+              <Mail className="w-5 h-5" />
+              Contact
+            </a>
+          </div>
 
-        {/* Content Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-
-          {/* Left Column (Text) */}
-          <div className="md:col-span-3 text-justify space-y-4 text-base sm:text-lg leading-relaxed">
-            <p>
-              <span className="float-left text-6xl leading-none font-['Playfair_Display'] pr-2 pt-2 font-bold">R</span>esults-driven developer with hands-on experience building scalable and full-stack web applications using MongoDB, Express.js, React.js, and Node.js.
-            </p>
-            <p>
-              Committed to writing clean code and delivering user-focused digital products. Based in India, always ready for global opportunities and challenging projects that push the boundaries of modern web development.
-            </p>
-            <div className="mt-6 border-t border-slate-400 pt-4">
-              <span className="block font-bold uppercase mb-2 text-sm">Status Update:</span>
-              <span className="inline-block px-3 py-1 border border-slate-900 text-xs font-bold uppercase tracking-wider">Available for Hire</span>
+          {/* Connect & Location */}
+          <div className="flex items-center gap-6 pt-10 border-t border-white/5">
+            <div className="flex gap-4">
+              <a href="https://github.com/mukundjha728-dotcom" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors duration-300 group">
+                <FaGithub className="w-6 h-6 group-hover:scale-110 group-hover:text-emerald-400 transition-all" />
+              </a>
+              <a href="https://linkedin.com/in/mukundjha01" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors duration-300 group">
+                <FaLinkedin className="w-6 h-6 group-hover:scale-110 group-hover:text-blue-400 transition-all" />
+              </a>
+            </div>
+            <div className="w-px h-6 bg-white/10"></div>
+            <div className="flex items-center gap-2 text-sm font-medium text-secondary">
+              <MapPin className="w-4 h-4 text-emerald-400" />
+              India
             </div>
           </div>
+        </motion.div>
 
-          {/* Center Column (Image) */}
-          <div className="md:col-span-6 flex flex-col items-center border-x-0 md:border-x border-slate-400 md:px-6">
-            <div className="w-full relative bg-slate-200 border-2 border-slate-900 p-2 transform rotate-1 hover:rotate-0 transition-transform duration-500 shadow-[8px_8px_0_0_rgba(15,23,42,1)]">
-              <img
-                src="/MukundJhaPortfolio.jpeg"
+        {/* RIGHT COLUMN: Portrait */}
+        <div className="relative w-full max-w-xs sm:max-w-sm lg:max-w-md mx-auto lg:mx-0 lg:ml-auto aspect-[3/4] flex items-center justify-center lg:[perspective:1000px] mt-8 lg:mt-0 z-20">
+          
+          {/* Volumetric Glow */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/20 to-cyan-500/20 blur-[100px] rounded-full pointer-events-none"></div>
+
+          {/* Interactive 3D Frame */}
+          <motion.div
+            style={{ 
+              rotateX, 
+              rotateY,
+              z: translateZ,
+              transformStyle: "preserve-3d" 
+            }}
+            className="relative w-full h-full rounded-3xl glass border border-white/10 shadow-2xl p-3 md:p-6"
+          >
+            {/* Holographic Rings */}
+            <motion.div 
+              className="absolute inset-0 border border-emerald-500/30 rounded-3xl pointer-events-none"
+              style={{ translateZ: "20px" }}
+            />
+            <motion.div 
+              className="absolute -inset-4 border border-cyan-500/20 rounded-3xl pointer-events-none"
+              style={{ translateZ: "-20px" }}
+            />
+
+            {/* Portrait Image Container */}
+            <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#0d1117]">
+              <img 
+                src="/MukundJhaPortfolio.jpeg" 
                 alt="Mukund Kumar Jha"
-                className="w-full h-auto object-cover grayscale contrast-125 sepia-[0.2]"
+                className="w-full h-full object-cover object-center scale-105 hover:scale-110 transition-transform duration-1000 ease-out"
               />
-              <div className="absolute -bottom-4 right-4 bg-[#f4f1ea] border-2 border-slate-900 px-3 py-1 font-bold font-['Playfair_Display'] text-sm shadow-[4px_4px_0_0_rgba(15,23,42,1)]">
-                Figure 1: The Developer
-              </div>
-            </div>
-            <p className="mt-8 text-sm italic text-center w-full max-w-md mx-auto px-4">
-              "Building modern web applications with a classic touch. Focusing on performance, accessibility, and clean architecture."
-            </p>
-          </div>
-
-          {/* Right Column (Sidebar/Links) */}
-          <div className="md:col-span-3 space-y-6">
-            <div className="border-4 border-slate-900 p-4 shadow-[4px_4px_0_0_rgba(15,23,42,1)] bg-white">
-              <h4 className="font-['Playfair_Display'] font-black text-xl uppercase mb-4 text-center border-b-2 border-slate-900 pb-2">
-                Quick Links
-              </h4>
-              <div className="flex flex-col gap-3">
-                <a
-                  href="#projects"
-                  className="flex items-center justify-between border-b border-slate-400 pb-2 hover:bg-slate-900 hover:text-[#f4f1ea] transition-colors px-2 uppercase font-bold text-sm group"
-                >
-                  View Projects <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </a>
-                <a
-                  href="https://drive.google.com/file/d/16y6Z5P4me6FD8MdwgpIGYRHO4qo17-EL/view?usp=sharing"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center justify-between border-b border-slate-400 pb-2 hover:bg-slate-900 hover:text-[#f4f1ea] transition-colors px-2 uppercase font-bold text-sm group"
-                >
-                  Resume PDF <Download className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
-                </a>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
             </div>
 
-            <div className="border-2 border-slate-900 p-4 text-center bg-slate-900 text-[#f4f1ea] shadow-[4px_4px_0_0_rgba(15,23,42,0.5)] hover:scale-[1.02] transition-transform">
-              <h4 className="font-['Playfair_Display'] font-bold text-lg uppercase mb-4 tracking-widest">
-                Connect
-              </h4>
-              <div className="flex justify-center gap-6">
-                <a
-                  href="https://github.com/mukundjha728-dotcom"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-gray-400 transition-colors"
-                >
-                  <FaGithub className="w-7 h-7" />
-                </a>
-                <a
-                  href="https://linkedin.com/in/mukundjha01"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-gray-400 transition-colors"
-                >
-                  <FaLinkedin className="w-7 h-7" />
-                </a>
-                <a
-                  href="mailto:mukundjha728@gmail.com"
-                  className="hover:text-gray-400 transition-colors"
-                >
-                  <Mail className="w-7 h-7" />
-                </a>
-              </div>
-            </div>
-
-            <div className="text-center p-4 border-2 border-dashed border-slate-900 bg-slate-100/50">
-              <MapPin className="w-6 h-6 mx-auto mb-2 text-slate-700" />
-              <p className="font-bold uppercase text-sm tracking-wider">Location</p>
-              <p className="italic font-['Playfair_Display'] text-lg">India</p>
-            </div>
-          </div>
-
+          </motion.div>
         </div>
+
       </div>
     </section>
   );
