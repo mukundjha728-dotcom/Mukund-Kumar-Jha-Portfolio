@@ -9,7 +9,7 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState("idle"); // idle, success, error
+  const [submitStatus, setSubmitStatus] = useState("idle"); // Possible values: 'idle' | 'success' | 'error'
 
   const handleChange = (e) => {
     setFormData({
@@ -54,7 +54,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-24 bg-transparent relative overflow-hidden">
-      {/* Decorative background */}
+      {/* Soft accent glow positioned top-left to complement the layout */}
       <div className="absolute top-[20%] left-[-10%] w-[40%] h-[40%] bg-accent/10 rounded-full blur-[150px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
@@ -75,7 +75,7 @@ const Contact = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column: Contact Info */}
+          {/* Left column — static contact details (email, location, availability note) */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -120,7 +120,7 @@ const Contact = () => {
             </div>
           </motion.div>
 
-          {/* Right Column: Contact Form */}
+          {/* Right column — Formspree-powered contact form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -192,7 +192,7 @@ const Contact = () => {
                   )}
                 </button>
 
-                {/* Status Messages */}
+                {/* Inline feedback messages shown after form submission */}
                 {submitStatus === "success" && (
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}

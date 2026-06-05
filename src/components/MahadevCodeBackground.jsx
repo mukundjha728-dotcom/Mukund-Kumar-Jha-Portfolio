@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import { motion, useAnimation } from "framer-motion";
 
 // ─────────────────────────────────────────────────────────────────────────────
-// CODE BLOCKS — Real React/JS snippets scattered across background
+// Code snippets — real React/JS blocks that appear scattered across the background
 // ─────────────────────────────────────────────────────────────────────────────
 const CODE_SNIPPETS = [
   { code: `import React from 'react';\nimport { motion } from 'framer-motion';\n\nconst Mahadev = () => {\n  return (\n    <Meditation state="deep">\n      <Consciousness level={Infinity} />\n    </Meditation>\n  );\n};`, x: 2, y: 3 },
@@ -17,7 +17,7 @@ const CODE_SNIPPETS = [
   { code: `<Universe>\n  <Mahadev />\n</Universe>`, x: 40, y: 85 },
 ];
 
-// Math formulas & algorithm labels scattered
+// Math and algorithm formulas rendered as faint ambient labels
 const MATH_FORMULAS = [
   { text: "E = mc²", x: 72, y: 68 },
   { text: "ε₀", x: 52, y: 5 },
@@ -29,7 +29,7 @@ const MATH_FORMULAS = [
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// SYNTAX HIGHLIGHTER — colors code like a real editor
+// Syntax highlighter — applies real editor-style token coloring to code strings
 // ─────────────────────────────────────────────────────────────────────────────
 const HighlightedCode = ({ code, progress }) => {
   const visible = code.substring(0, Math.floor(progress * code.length));
@@ -56,17 +56,17 @@ const HighlightedCode = ({ code, progress }) => {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// GEOMETRIC SVG ELEMENTS — Hexagons, network graphs, sacred shapes
+// Geometric SVG elements — hexagons, network graphs, and sacred geometry shapes
 // ─────────────────────────────────────────────────────────────────────────────
 const GeometricElements = () => {
   const shapes = useMemo(() => [
-    // Hexagon top-right
+    // Large hexagon in the top-right corner
     { x: 82, y: 3, size: 50, type: 'hexagon' },
-    // Network graph mid-left
+    // Network graph node cluster positioned mid-left
     { x: 5, y: 45, size: 60, type: 'network' },
-    // Small hexagon bottom-right
+    // Smaller hexagon anchored in the bottom-right
     { x: 90, y: 88, size: 35, type: 'hexagon' },
-    // Sacred triangle
+    // Sacred triangle in the upper-left area
     { x: 15, y: 12, size: 40, type: 'triangle' },
   ], []);
 
@@ -113,7 +113,7 @@ const GeometricElements = () => {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// MAHADEV IMAGE — Uses the actual SVG from public folder
+// Mahadev image layer — loads the SVG silhouette from the public folder
 // ─────────────────────────────────────────────────────────────────────────────
 const MahadevImage = ({ visible }) => (
   <motion.div
@@ -132,7 +132,7 @@ const MahadevImage = ({ visible }) => (
 );
 
 // ─────────────────────────────────────────────────────────────────────────────
-// MAIN GLOBAL BACKGROUND COMPONENT
+// Main background component — orchestrates the full animated background loop
 // ─────────────────────────────────────────────────────────────────────────────
 const MahadevCodeBackground = () => {
   const [typingProgress, setTypingProgress] = useState(0);
@@ -144,7 +144,7 @@ const MahadevCodeBackground = () => {
 
     const runLoop = async () => {
       while (isMounted) {
-        // ── STEP 1: Code typing (0→5s) ───────────────────
+        // ── Phase 1: Animate code typing from 0% to 100% over 5 seconds ──
         setTypingProgress(0);
         setShowMahadev(false);
         codeControls.set({ opacity: 0.15 });
@@ -160,14 +160,14 @@ const MahadevCodeBackground = () => {
         clearInterval(tick);
         if (!isMounted) break;
 
-        // ── STEP 2: Mahadev appears (5→10s) ──────────────
+        // ── Phase 2: Fade code out and reveal the Mahadev image for 5 seconds ──
         codeControls.start({ opacity: 0.04, transition: { duration: 1.5 } });
         setShowMahadev(true);
 
         await new Promise(r => setTimeout(r, 5000));
         if (!isMounted) break;
 
-        // ── Reset ────────────────────────────────────────
+        // ── Phase 3: Reset everything and restart the loop ──
         setShowMahadev(false);
         codeControls.start({ opacity: 0, transition: { duration: 0.4 } });
         await new Promise(r => setTimeout(r, 400));
@@ -180,11 +180,11 @@ const MahadevCodeBackground = () => {
 
   return (
     <div className="fixed inset-0 w-full h-full pointer-events-none select-none overflow-hidden" style={{ zIndex: 0 }}>
-      {/* Deep dark background */}
+      {/* Deep dark solid base behind all layers */}
       <div className="absolute inset-0 bg-[#040408]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,rgba(16,24,40,0.8),rgba(4,4,8,1))]" />
 
-      {/* ── CODE LAYER ────────────────────────────────── */}
+      {/* Animated code snippets layer — fades in as typing progresses */}
       <motion.div
         className="absolute inset-0 overflow-hidden"
         animate={codeControls}
@@ -201,7 +201,7 @@ const MahadevCodeBackground = () => {
         ))}
       </motion.div>
 
-      {/* ── MATH FORMULAS ─────────────────────────────── */}
+      {/* Floating math and algorithm formula labels */}
       <div className="absolute inset-0 overflow-hidden">
         {MATH_FORMULAS.map((f, i) => (
           <motion.div
@@ -216,17 +216,17 @@ const MahadevCodeBackground = () => {
         ))}
       </div>
 
-      {/* ── GEOMETRIC SHAPES ──────────────────────────── */}
+      {/* Slowly rotating SVG geometric shapes for ambient texture */}
       <GeometricElements />
 
-      {/* ── MAHADEV LAYER (centered) ──────────────────── */}
+      {/* Centered Mahadev silhouette — fades in during phase 2 of the loop */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="relative" style={{ width: 'min(85vh, 700px)', height: 'min(85vh, 700px)' }}>
           <MahadevImage visible={showMahadev} />
         </div>
       </div>
 
-      {/* ── Subtle stars / dots ────────────────────────── */}
+      {/* Subtle static star-field effect via tiny radial gradient dots */}
       <div className="absolute inset-0" style={{ background: 'radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.15), transparent), radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,0.1), transparent), radial-gradient(1px 1px at 60% 20%, rgba(255,255,255,0.08), transparent), radial-gradient(1px 1px at 80% 80%, rgba(255,255,255,0.12), transparent), radial-gradient(1px 1px at 10% 90%, rgba(255,255,255,0.06), transparent), radial-gradient(1px 1px at 90% 50%, rgba(255,255,255,0.08), transparent)' }} />
     </div>
   );

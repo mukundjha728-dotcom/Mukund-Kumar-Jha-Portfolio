@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 
 const Hero = () => {
-  // Cursor Parallax Logic
+  // Track normalized mouse position (-0.5 to 0.5) for the 3D parallax tilt effect
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -61,7 +61,7 @@ const Hero = () => {
             </p>
           </div>
 
-          {/* CTAs */}
+          {/* Primary call-to-action buttons */}
           <div className="flex flex-wrap items-center gap-4 pt-4 relative z-30">
             <a href="#projects" className="group flex items-center gap-3 px-8 py-4 bg-white text-[#050505] font-bold rounded-xl hover:bg-emerald-50 transition-all duration-300 active:scale-95 shadow-[0_0_20px_rgba(52,211,153,0.3)] hover:shadow-[0_0_30px_rgba(52,211,153,0.5)]">
               View Projects
@@ -73,7 +73,7 @@ const Hero = () => {
             </a>
           </div>
 
-          {/* Connect & Location */}
+          {/* Social links and current location indicator */}
           <div className="flex items-center gap-6 pt-10 border-t border-white/5">
             <div className="flex gap-4">
               <a href="https://github.com/mukundjha728-dotcom" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors duration-300 group">
@@ -91,13 +91,13 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        {/* RIGHT COLUMN: Portrait */}
+        {/* Right column — profile portrait with interactive 3D tilt card */}
         <div className="relative w-full max-w-xs sm:max-w-sm lg:max-w-md mx-auto lg:mx-0 lg:ml-auto aspect-[3/4] flex items-center justify-center lg:[perspective:1000px] mt-8 lg:mt-0 z-20">
           
-          {/* Volumetric Glow */}
+          {/* Ambient glow — adds depth behind the portrait card */}
           <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/20 to-cyan-500/20 blur-[100px] rounded-full pointer-events-none"></div>
 
-          {/* Interactive 3D Frame */}
+          {/* Framer Motion tilt card — rotates with mouse position via spring physics */}
           <motion.div
             style={{ 
               rotateX, 
@@ -107,7 +107,7 @@ const Hero = () => {
             }}
             className="relative w-full h-full rounded-3xl glass border border-white/10 shadow-2xl p-3 md:p-6"
           >
-            {/* Holographic Rings */}
+            {/* Layered depth rings to create a holographic depth illusion */}
             <motion.div 
               className="absolute inset-0 border border-emerald-500/30 rounded-3xl pointer-events-none"
               style={{ translateZ: "20px" }}
@@ -117,7 +117,7 @@ const Hero = () => {
               style={{ translateZ: "-20px" }}
             />
 
-            {/* Portrait Image Container */}
+            {/* Profile photo with a subtle gradient overlay fading to the background */}
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#0d1117]">
               <img 
                 src="/MukundJhaPortfolio.jpeg" 

@@ -78,7 +78,7 @@ const Experience = () => {
 
   return (
     <section id="experience" className="py-24 bg-transparent relative overflow-hidden">
-      {/* Decorative background elements */}
+      {/* Soft radial glow in the top-right to add visual depth */}
       <div className="absolute top-40 right-[-10%] w-[30%] h-[30%] bg-accent/5 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
@@ -99,7 +99,7 @@ const Experience = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           
-          {/* Left Column: Timeline */}
+          {/* Left column — scrollable work and education timeline */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -107,7 +107,7 @@ const Experience = () => {
             variants={staggerContainer}
             className="lg:col-span-7 space-y-12"
           >
-            {/* Experience Section */}
+            {/* Work experience cards arranged in a vertical timeline */}
             <div>
               <motion.div variants={fadeUp} className="flex items-center gap-3 mb-8">
                 <div className="p-2.5 glass-card text-accent">
@@ -119,7 +119,7 @@ const Experience = () => {
               <div className="relative border-l border-border ml-6 space-y-10">
                 {experiences.map((exp, index) => (
                   <motion.div variants={fadeUp} key={index} className="relative pl-8 group">
-                    {/* Timeline Dot */}
+                    {/* Accent dot on the timeline track, highlights on hover */}
                     <div className="absolute -left-[6px] top-1.5 w-3 h-3 bg-background border-2 border-accent rounded-full group-hover:bg-accent transition-colors shadow-[0_0_10px_rgba(99,102,241,0.5)]"></div>
                     
                     <div className="glass-card p-6 lg:p-8 hover:border-accent/30 transition-all duration-300">
@@ -149,7 +149,7 @@ const Experience = () => {
               </div>
             </div>
 
-            {/* Education Section */}
+            {/* Education cards below the work experience timeline */}
             <div className="pt-6">
               <motion.div variants={fadeUp} className="flex items-center gap-3 mb-8">
                 <div className="p-2.5 glass-card text-accent">
@@ -180,7 +180,7 @@ const Experience = () => {
             </div>
           </motion.div>
 
-          {/* Right Column: Skills Grid */}
+          {/* Right column — sticky skills grid panel */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}

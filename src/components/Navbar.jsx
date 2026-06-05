@@ -6,6 +6,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // Apply a glass background to the navbar once the user scrolls past 20px
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -20,6 +21,25 @@ const Navbar = () => {
     { name: "Projects", href: "#projects" },
     { name: "Contact", href: "#contact" },
   ];
+
+  /**
+   * Handles navigation link clicks in the mobile menu.
+   * We prevent the default anchor behavior and close the menu first,
+   * then wait for the exit animation to finish before scrolling smoothly
+   * to the target section. This avoids the overflow-hidden animation
+   * blocking the browser's native scroll.
+   */
+  const handleMobileNavClick = (e, href) => {
+    e.preventDefault();
+    setIsOpen(false);
+    setTimeout(() => {
+      const targetId = href.replace("#", "");
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 300);
+  };
 
   return (
     <nav
@@ -88,19 +108,16 @@ const Navbar = () => {
             className="md:hidden absolute top-full left-0 w-full glass border-b border-border overflow-hidden"
           >
             <div className="px-6 py-8 space-y-2 flex flex-col gap-4">
-              {navLinks.map((link, i) => (
-                <motion.a
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
+              {navLinks.map((link) => (
+                <a
                   key={link.name}
                   href={link.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleMobileNavClick(e, link.href)}
                   className="flex items-center justify-between px-4 py-3 text-lg font-medium text-primary hover:text-white hover:bg-white/5 rounded-xl transition-all"
                 >
                   {link.name}
                   <ChevronRight className="w-4 h-4 text-secondary" />
-                </motion.a>
+                </a>
               ))}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

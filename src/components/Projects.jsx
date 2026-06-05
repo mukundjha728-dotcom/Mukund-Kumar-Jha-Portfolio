@@ -73,7 +73,7 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-24 bg-transparent relative overflow-hidden">
-      {/* Decorative background */}
+      {/* Subtle center glow to draw focus toward the project grid */}
       <div className="absolute top-0 left-[20%] w-[50%] h-[50%] bg-indigo-500/5 rounded-full blur-[150px] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
@@ -105,7 +105,7 @@ const Projects = () => {
               key={index}
               className="glass-card p-8 hover:-translate-y-2 transition-all duration-300 flex flex-col h-full relative group hover:border-accent/50 hover:shadow-[0_10px_40px_-10px_rgba(99,102,241,0.2)]"
             >
-              {/* Card Header */}
+              {/* Card header — code icon on the left, GitHub and live link icons on the right */}
               <div className="flex justify-between items-center mb-8">
                 <div className="p-3 bg-white/5 rounded-xl border border-white/10 group-hover:bg-accent/20 transition-colors">
                   <Code2 className="w-6 h-6 text-accent" />
@@ -132,7 +132,7 @@ const Projects = () => {
                 </div>
               </div>
 
-              {/* Card Body */}
+              {/* Card body — project title, category label, and description */}
               <div className="flex-grow">
                 <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
                   {project.title}
@@ -145,7 +145,7 @@ const Projects = () => {
                 </p>
               </div>
 
-              {/* Card Footer (Tech Stack) */}
+              {/* Card footer — technology stack pills separated by a divider */}
               <div className="mt-auto flex flex-wrap gap-2 pt-6 border-t border-border">
                 {project.techStack.map((tech, i) => (
                   <span

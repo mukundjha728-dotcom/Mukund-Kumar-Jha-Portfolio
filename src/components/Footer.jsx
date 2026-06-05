@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8 mb-12">
           
-          {/* Brand & Intro */}
+          {/* Brand identity block — logo and a one-liner describing the developer's focus */}
           <div className="md:col-span-5 lg:col-span-4">
             <a href="#home" className="inline-block mb-6">
               <span className="font-sans font-black text-3xl tracking-tighter text-white">
@@ -22,7 +22,7 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick navigation links mirroring the main navbar */}
           <div className="md:col-span-3 lg:col-span-4 lg:ml-auto">
             <h4 className="text-white font-bold mb-6 tracking-wide">Navigation</h4>
             <ul className="space-y-4">
@@ -39,7 +39,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Socials */}
+          {/* Social media icon links — GitHub, LinkedIn, and direct email */}
           <div className="md:col-span-4 lg:col-span-4 lg:ml-auto">
             <h4 className="text-white font-bold mb-6 tracking-wide">Connect</h4>
             <div className="flex gap-4">
@@ -72,7 +72,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom bar — copyright notice and "built with love" tagline */}
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-secondary text-sm font-medium">
             &copy; {currentYear} Mukund Kumar Jha. All rights reserved.
