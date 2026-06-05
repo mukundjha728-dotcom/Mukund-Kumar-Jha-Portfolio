@@ -1,10 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { Menu, X, FileText, ChevronRight } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import { Menu, X, FileText, ChevronRight, ChevronDown, Layers, Code2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+
+const RESUME_OPTIONS = [
+  {
+    label: "Frontend Resume",
+    description: "React · CSS · UI/UX",
+    icon: <Code2 className="w-4 h-4" />,
+    href: "https://drive.google.com/file/d/18s2moOyAQhhNaOGus_en4X3VgbcT4HQo/view?usp=sharing",
+  },
+  {
+    label: "Full Stack Resume",
+    description: "MERN · REST APIs · Node",
+    icon: <Layers className="w-4 h-4" />,
+    href: "https://drive.google.com/file/d/1gR0yywacUZVcS7yF4zN753qZDzXbJ_vY/view?usp=sharing",
+  },
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [resumeDropdownOpen, setResumeDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   // Apply a glass background to the navbar once the user scrolls past 20px
   useEffect(() => {
@@ -13,6 +30,17 @@ const Navbar = () => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Close the resume dropdown when clicking outside of it
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setResumeDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const navLinks = [
@@ -73,15 +101,62 @@ const Navbar = () => {
               </a>
             ))}
 
-            <a
-              href="https://drive.google.com/file/d/1V3AdZcsOysQ3dUU_ZG258U31712qkfzu/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-2 px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-white font-medium text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(99,102,241,0.2)] hover:border-accent/50"
-            >
-              <FileText className="w-4 h-4 text-accent group-hover:scale-110 transition-transform" />
-              <span>Resume</span>
-            </a>
+            {/* Desktop Resume Dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setResumeDropdownOpen((prev) => !prev)}
+                className="group flex items-center gap-2 px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-white font-medium text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(99,102,241,0.2)] hover:border-accent/50"
+              >
+                <FileText className="w-4 h-4 text-accent group-hover:scale-110 transition-transform" />
+                <span>Resume</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 text-secondary transition-transform duration-300 ${
+                    resumeDropdownOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {/* Dropdown panel */}
+              <AnimatePresence>
+                {resumeDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="absolute right-0 mt-3 w-56 glass border border-white/10 rounded-2xl shadow-2xl shadow-black/40 overflow-hidden"
+                  >
+                    {/* Decorative top accent line */}
+                    <div className="h-0.5 w-full bg-gradient-to-r from-accent via-indigo-400 to-transparent" />
+
+                    <div className="p-2 space-y-1">
+                      {RESUME_OPTIONS.map((option) => (
+                        <a
+                          key={option.label}
+                          href={option.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setResumeDropdownOpen(false)}
+                          className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/8 hover:bg-white/[0.08] text-secondary hover:text-white transition-all duration-200 group"
+                        >
+                          <span className="p-1.5 rounded-lg bg-accent/10 text-accent group-hover:bg-accent/20 transition-colors">
+                            {option.icon}
+                          </span>
+                          <div className="flex flex-col">
+                            <span className="text-sm font-medium leading-tight">
+                              {option.label}
+                            </span>
+                            <span className="text-xs text-secondary/60 mt-0.5">
+                              {option.description}
+                            </span>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -119,21 +194,37 @@ const Navbar = () => {
                   <ChevronRight className="w-4 h-4 text-secondary" />
                 </a>
               ))}
+
+              {/* Mobile resume section — both options displayed as individual buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="pt-6 mt-2 border-t border-border"
+                transition={{ delay: 0.35 }}
+                className="pt-6 mt-2 border-t border-border space-y-3"
               >
-                <a
-                  href="https://drive.google.com/file/d/1V3AdZcsOysQ3dUU_ZG258U31712qkfzu/view?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-accent hover:bg-accentHover text-white font-medium rounded-xl transition-colors shadow-lg shadow-accent/20"
-                >
-                  <FileText className="w-5 h-5" />
-                  View Resume
-                </a>
+                <p className="text-xs font-semibold text-secondary/60 uppercase tracking-widest px-1 mb-4">
+                  Download Resume
+                </p>
+                {RESUME_OPTIONS.map((option) => (
+                  <a
+                    key={option.label}
+                    href={option.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 w-full px-5 py-4 bg-white/5 hover:bg-accent/10 border border-white/10 hover:border-accent/40 text-white font-medium rounded-xl transition-all duration-200 group"
+                  >
+                    <span className="p-1.5 rounded-lg bg-accent/10 text-accent group-hover:bg-accent/20 transition-colors">
+                      {option.icon}
+                    </span>
+                    <div className="flex flex-col text-left">
+                      <span className="text-sm font-semibold">{option.label}</span>
+                      <span className="text-xs text-secondary/70 mt-0.5">
+                        {option.description}
+                      </span>
+                    </div>
+                    <FileText className="w-4 h-4 text-secondary ml-auto" />
+                  </a>
+                ))}
               </motion.div>
             </div>
           </motion.div>
