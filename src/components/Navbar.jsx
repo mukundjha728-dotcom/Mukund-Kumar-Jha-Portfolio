@@ -7,13 +7,13 @@ const RESUME_OPTIONS = [
     label: "Frontend Resume",
     description: "React · CSS · UI/UX",
     icon: <Code2 className="w-4 h-4" />,
-    href: "https://drive.google.com/file/d/18s2moOyAQhhNaOGus_en4X3VgbcT4HQo/view?usp=sharing",
+    href: "https://drive.google.com/file/d/1KAsIeDn5nfXCZDvS4ukmakOIGcJ56XmG/view?usp=sharing",
   },
   {
     label: "Full Stack Resume",
     description: "MERN · REST APIs · Node",
     icon: <Layers className="w-4 h-4" />,
-    href: "https://drive.google.com/file/d/1gR0yywacUZVcS7yF4zN753qZDzXbJ_vY/view?usp=sharing",
+    href: "https://drive.google.com/file/d/1VZ4LvvUNkZgUbIaFk1oy1RvJmCF_Rd7K/view?usp=sharing",
   },
 ];
 
