@@ -9,43 +9,43 @@ const Projects = () => {
       title: "Import Export Platform",
       company: "VR AND Sons",
       description:
-        "Engineered a scalable B2B platform showcasing import-export operations. Designed with a focus on high performance, secure data presentation, and seamless cross-device compatibility.",
+        "Developed a responsive B2B platform utilizing React.js and a modular component-based architecture. Leveraged Tailwind CSS to build accessible, cross-browser compatible interfaces with optimized frontend rendering for seamless cross-device usage.",
       techStack: ["React.js", "Tailwind CSS", "Vite"],
       githubLink: "https://github.com/mukundjha728-dotcom",
       liveLink: "https://www.vrandsons.com/",
     },
     {
-      title: "Premium E-Commerce",
+      title: "Modern E-Commerce Storefront",
       company: "Architecture Project",
       description:
-        "Architected a high-conversion e-commerce storefront with advanced state management, intelligent filtering, and component-driven development for massive scalability.",
+        "Architected a scalable e-commerce storefront using React.js. Implemented robust global state management for dynamic product filtering, utilizing reusable UI components to ensure a maintainable code structure and optimal frontend performance.",
       techStack: ["React.js", "Tailwind CSS", "Zustand"],
       githubLink: "https://github.com/mukundjha728-dotcom",
       liveLink: "https://furniture-website-8sts.vercel.app/",
     },
     {
-      title: "Email Verification API",
+      title: "Email Verification Service",
       company: "Tooling",
       description:
-        "Developed a high-throughput validation service ensuring data integrity. Focused on algorithmic efficiency, real-time feedback, and secure endpoint communication.",
+        "Engineered a high-throughput email validation API using Node.js and Express.js. Designed secure REST API endpoints featuring comprehensive data validation, strict error handling, and seamless frontend API integration to ensure data integrity.",
       techStack: ["Node.js", "Express", "React.js"],
       githubLink: "https://github.com/mukundjha728-dotcom",
       liveLink: "https://www.graphurahub.in/",
     },
     {
-      title: "Task Management OS",
+      title: "Task Management Application",
       company: "Productivity",
       description:
-        "Built a robust productivity ecosystem featuring real-time state synchronization, secure authentication flows, and a highly modular UI architecture.",
+        "Built a secure, full-stack application on the MERN stack. Engineered a scalable backend architecture featuring robust authentication, RESTful API routing, and integrated it with a responsive React frontend via efficient state-driven UI updates.",
       techStack: ["MongoDB", "Express", "React.js", "Node.js"],
       githubLink: "https://github.com/mukundjha728-dotcom",
       liveLink: "https://task-management-liart-nu.vercel.app/",
     },
     {
-      title: "School Management System",
+      title: "School Administration Dashboard",
       company: "Enterprise",
       description:
-        "Designed a complex administrative dashboard with role-based access control, secure data querying, and intuitive data visualization interfaces.",
+        "Designed an enterprise dashboard focusing on scalable database design and efficient CRUD operations. Utilized MongoDB and Mongoose to execute complex aggregation pipelines for secure data querying, coupled with role-based access control.",
       techStack: ["MongoDB", "Express", "React.js", "Node.js"],
       githubLink: "https://github.com/mukundjha728-dotcom",
       liveLink: "https://school-management-phi-sandy.vercel.app/",
@@ -54,7 +54,7 @@ const Projects = () => {
       title: "Fruits Bounty UI",
       company: "Frontend",
       description:
-        "Crafted a visually engaging product landing page leveraging modern CSS architectures, micro-animations, and strict performance budgets.",
+        "Crafted a highly interactive, responsive landing page with React.js and Tailwind CSS. Emphasized semantic HTML for web accessibility, optimized micro-animations for performance, and maintained strict version control via Git and GitHub.",
       techStack: ["React.js", "Tailwind CSS", "Framer Motion"],
       githubLink: "https://github.com/mukundjha728-dotcom",
       liveLink: "https://www.fruitsbounty.in/",
@@ -115,8 +115,8 @@ const Projects = () => {
                     href={project.githubLink}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-secondary hover:text-white transition-colors"
-                    aria-label="GitHub Repository"
+                    className="text-secondary hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded p-1"
+                    aria-label="View Source Code on GitHub"
                   >
                     <FaGithub className="w-5 h-5 hover:scale-110 transition-transform" />
                   </a>
@@ -124,8 +124,8 @@ const Projects = () => {
                     href={project.liveLink}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-secondary hover:text-white transition-colors"
-                    aria-label="Live Project Link"
+                    className="text-secondary hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded p-1"
+                    aria-label="View Live Project"
                   >
                     <ExternalLink className="w-5 h-5 hover:scale-110 transition-transform" />
                   </a>
@@ -171,10 +171,10 @@ const Projects = () => {
             href="https://github.com/mukundjha728-dotcom"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center px-8 py-4 text-sm font-semibold text-white bg-white/5 border border-white/10 rounded-full hover:bg-white/10 transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_20px_rgba(99,102,241,0.2)] active:scale-95 gap-3"
+            className="inline-flex items-center justify-center px-8 py-4 text-sm font-semibold text-white bg-white/5 border border-white/10 rounded-full hover:bg-white/10 transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_20px_rgba(99,102,241,0.2)] active:scale-95 gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
             <FaGithub className="w-5 h-5" />
-            Explore More Architecture
+            Explore More Projects
           </a>
         </motion.div>
       </div>

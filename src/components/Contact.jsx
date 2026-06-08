@@ -114,7 +114,7 @@ const Contact = () => {
 
               <div className="mt-12 pt-8 border-t border-border">
                 <p className="text-secondary text-sm leading-relaxed">
-                  I'm currently available for freelance work and full-time opportunities. If you have a project that needs some creative and technical magic, I'd love to hear from you.
+                  I'm currently available for freelance work and full-time opportunities. If you have a project or an opportunity that requires scalable engineering and a modern tech stack, I'd love to hear from you.
                 </p>
               </div>
             </div>
@@ -176,7 +176,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full group relative flex justify-center items-center gap-2 px-8 py-4 bg-accent text-white font-semibold rounded-xl hover:bg-accentHover transition-all shadow-[0_0_20px_rgba(99,102,241,0.3)] disabled:opacity-70 disabled:cursor-not-allowed overflow-hidden"
+                  className="w-full group relative flex justify-center items-center gap-2 px-8 py-4 bg-accent text-white font-semibold rounded-xl hover:bg-accentHover transition-all shadow-[0_0_20px_rgba(99,102,241,0.3)] disabled:opacity-70 disabled:cursor-not-allowed overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
                   {isSubmitting ? (

@@ -1,20 +1,20 @@
-import React, { useEffect, useState, useMemo } from "react";
-import { motion, useAnimation } from "framer-motion";
+import React, { useEffect, useState, useMemo, useRef } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Code snippets — real React/JS blocks that appear scattered across the background
 // ─────────────────────────────────────────────────────────────────────────────
 const CODE_SNIPPETS = [
-  { code: `import React from 'react';\nimport { motion } from 'framer-motion';\n\nconst Mahadev = () => {\n  return (\n    <Meditation state="deep">\n      <Consciousness level={Infinity} />\n    </Meditation>\n  );\n};`, x: 2, y: 3 },
-  { code: `const consciousness = useMemo(() => {\n  return merge(code, devotion);\n}, [universe]);`, x: 55, y: 2 },
-  { code: `// System initializing cosmic cycle...\nuseEffect(() => {\n  const cycle = new SamsaraCycle();\n  cycle.begin({ loop: true });\n  return () => cycle.dissolve();\n}, []);`, x: 75, y: 15 },
-  { code: `while (alive) {\n  code();\n  meditate();\n  create();\n}`, x: 72, y: 55 },
-  { code: `const energy = flow(code);\nreturn universe.merge(\n  consciousness,\n  geometry,\n  devotion\n);`, x: 60, y: 35 },
-  { code: `export default Universe;\n\n// Aum Namah Shivaya`, x: 3, y: 75 },
-  { code: `const [Consciousness] = useState(0);\n\nsetInterval(() => {\n  prev => prev + 1);\n}, 1);`, x: 2, y: 30 },
+  { code: `import React from 'react';\nimport { motion } from 'framer-motion';\n\nconst SystemCore = () => {\n  return (\n    <Processing state="deep">\n      <State level={Infinity} />\n    </Processing>\n  );\n};`, x: 2, y: 3 },
+  { code: `const appState = useMemo(() => {\n  return merge(code, logic);\n}, [appState]);`, x: 55, y: 2 },
+  { code: `// System initializing render cycle...\nuseEffect(() => {\n  const cycle = new RenderCycle();\n  cycle.begin({ loop: true });\n  return () => cycle.dissolve();\n}, []);`, x: 75, y: 15 },
+  { code: `while (alive) {\n  code();\n  process();\n  create();\n}`, x: 72, y: 55 },
+  { code: `const energy = flow(code);\nreturn appState.merge(\n  state,\n  geometry,\n  logic\n);`, x: 60, y: 35 },
+  { code: `export default AppState;\n\n// System Operational`, x: 3, y: 75 },
+  { code: `const [state] = useState(0);\n\nsetInterval(() => {\n  prev => prev + 1);\n}, 1);`, x: 2, y: 30 },
   { code: `clearInterval(interval);\n\n// Compiling geometric reality...`, x: 1, y: 55 },
   { code: `const reality = new RealityEngine();\nreality.render({\n  energy: "infinite",\n  form: "wireframe"\n});`, x: 78, y: 75 },
-  { code: `<Universe>\n  <Mahadev />\n</Universe>`, x: 40, y: 85 },
+  { code: `<AppState>\n  <SystemCore />\n</AppState>`, x: 40, y: 85 },
 ];
 
 // Math and algorithm formulas rendered as faint ambient labels
@@ -37,7 +37,7 @@ const HighlightedCode = ({ code, progress }) => {
     const html = line
       .replace(/\b(import|from|const|return|export|default|while|new|useMemo|useEffect|setInterval|clearInterval|useState|prev)\b/g,
         '<span style="color:#f472b6">$1</span>')
-      .replace(/\b(React|motion|Mahadev|Meditation|Consciousness|Tapasya|Universe|SamsaraCycle|RealityEngine)\b/g,
+      .replace(/\b(React|motion|SystemCore|Processing|State|AppState|RenderCycle|RealityEngine)\b/g,
         '<span style="color:#34d399;font-weight:600">$1</span>')
       .replace(/(<[^>]+>)/g, '<span style="color:#60a5fa">$1</span>')
       .replace(/('.*?'|".*?")/g, '<span style="color:#fcd34d">$1</span>')
@@ -113,9 +113,9 @@ const GeometricElements = () => {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Mahadev image layer — loads the SVG silhouette from the public folder
+// Profile silhouette image layer — loads the SVG silhouette from the public folder
 // ─────────────────────────────────────────────────────────────────────────────
-const MahadevImage = ({ visible }) => (
+const ProfileSilhouette = ({ visible }) => (
   <motion.div
     className="w-full h-full flex items-center justify-center"
     initial={{ opacity: 0 }}
@@ -134,19 +134,27 @@ const MahadevImage = ({ visible }) => (
 // ─────────────────────────────────────────────────────────────────────────────
 // Main background component — orchestrates the full animated background loop
 // ─────────────────────────────────────────────────────────────────────────────
-const MahadevCodeBackground = () => {
+const CodeBackground = () => {
   const [typingProgress, setTypingProgress] = useState(0);
-  const [showMahadev, setShowMahadev] = useState(false);
+  const [showSilhouette, setShowSilhouette] = useState(false);
   const codeControls = useAnimation();
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { amount: 0.1 });
 
   useEffect(() => {
     let isMounted = true;
 
     const runLoop = async () => {
       while (isMounted) {
+        // Pause loop if component is not in view
+        if (!isInView) {
+          await new Promise(r => setTimeout(r, 1000));
+          continue;
+        }
+
         // ── Phase 1: Animate code typing from 0% to 100% over 5 seconds ──
         setTypingProgress(0);
-        setShowMahadev(false);
+        setShowSilhouette(false);
         codeControls.set({ opacity: 0.15 });
 
         const t0 = Date.now();
@@ -154,21 +162,21 @@ const MahadevCodeBackground = () => {
         const tick = setInterval(() => {
           if (!isMounted) return;
           setTypingProgress(Math.min((Date.now() - t0) / TYPING, 1));
-        }, 40);
+        }, 100); // Increased interval from 40ms to 100ms for better CPU performance
 
         await new Promise(r => setTimeout(r, TYPING));
         clearInterval(tick);
         if (!isMounted) break;
 
-        // ── Phase 2: Fade code out and reveal the Mahadev image for 5 seconds ──
+        // ── Phase 2: Fade code out and reveal the silhouette image for 5 seconds ──
         codeControls.start({ opacity: 0.04, transition: { duration: 1.5 } });
-        setShowMahadev(true);
+        setShowSilhouette(true);
 
         await new Promise(r => setTimeout(r, 5000));
         if (!isMounted) break;
 
         // ── Phase 3: Reset everything and restart the loop ──
-        setShowMahadev(false);
+        setShowSilhouette(false);
         codeControls.start({ opacity: 0, transition: { duration: 0.4 } });
         await new Promise(r => setTimeout(r, 400));
       }
@@ -176,10 +184,10 @@ const MahadevCodeBackground = () => {
 
     runLoop();
     return () => { isMounted = false; };
-  }, [codeControls]);
+  }, [codeControls, isInView]);
 
   return (
-    <div className="fixed inset-0 w-full h-full pointer-events-none select-none overflow-hidden" style={{ zIndex: 0 }}>
+    <div ref={containerRef} className="fixed inset-0 w-full h-full pointer-events-none select-none overflow-hidden" style={{ zIndex: 0 }}>
       {/* Deep dark solid base behind all layers */}
       <div className="absolute inset-0 bg-[#040408]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,rgba(16,24,40,0.8),rgba(4,4,8,1))]" />
@@ -219,10 +227,10 @@ const MahadevCodeBackground = () => {
       {/* Slowly rotating SVG geometric shapes for ambient texture */}
       <GeometricElements />
 
-      {/* Centered Mahadev silhouette — fades in during phase 2 of the loop */}
+      {/* Centered Silhouette — fades in during phase 2 of the loop */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="relative" style={{ width: 'min(85vh, 700px)', height: 'min(85vh, 700px)' }}>
-          <MahadevImage visible={showMahadev} />
+          <ProfileSilhouette visible={showSilhouette} />
         </div>
       </div>
 
@@ -232,4 +240,4 @@ const MahadevCodeBackground = () => {
   );
 };
 
-export default MahadevCodeBackground;
+export default CodeBackground;

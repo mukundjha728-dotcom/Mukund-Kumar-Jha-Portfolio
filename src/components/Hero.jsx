@@ -54,20 +54,20 @@ const Hero = () => {
               </span>
             </h1>
             <h2 className="text-xl md:text-2xl font-semibold text-white/90">
-              MERN Stack Developer | <span className="font-light text-white/70">Frontend-Focused Full Stack</span>
+              Full Stack Software Engineer | <span className="font-light text-white/70">MERN Ecosystem</span>
             </h2>
             <p className="text-lg md:text-xl text-secondary max-w-lg leading-relaxed pt-4">
-              Architecting high-performance, scalable web applications. Bridging advanced engineering, interactive 3D motion, and premium design.
+              Building scalable, high-performance web applications. Focused on component-driven architecture, robust REST APIs, and exceptional user experiences.
             </p>
           </div>
 
           {/* Primary call-to-action buttons */}
           <div className="flex flex-wrap items-center gap-4 pt-4 relative z-30">
-            <a href="#projects" className="group flex items-center gap-3 px-8 py-4 bg-white text-[#050505] font-bold rounded-xl hover:bg-emerald-50 transition-all duration-300 active:scale-95 shadow-[0_0_20px_rgba(52,211,153,0.3)] hover:shadow-[0_0_30px_rgba(52,211,153,0.5)]">
+            <a href="#projects" className="group flex items-center gap-3 px-8 py-4 bg-white text-[#050505] font-bold rounded-xl hover:bg-emerald-50 transition-all duration-300 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background shadow-[0_0_20px_rgba(52,211,153,0.3)] hover:shadow-[0_0_30px_rgba(52,211,153,0.5)]">
               View Projects
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a href="#contact" className="flex items-center gap-3 px-8 py-4 bg-[#121218] text-white font-bold rounded-xl hover:bg-[#1a1a24] transition-all duration-300 active:scale-95 border border-white/15">
+            <a href="#contact" className="flex items-center gap-3 px-8 py-4 bg-[#121218] text-white font-bold rounded-xl hover:bg-[#1a1a24] transition-all duration-300 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background border border-white/15">
               <Mail className="w-5 h-5" />
               Contact
             </a>
@@ -76,10 +76,10 @@ const Hero = () => {
           {/* Social links and current location indicator */}
           <div className="flex items-center gap-6 pt-10 border-t border-white/5">
             <div className="flex gap-4">
-              <a href="https://github.com/mukundjha728-dotcom" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors duration-300 group">
+              <a href="https://github.com/mukundjha728-dotcom" target="_blank" rel="noreferrer" aria-label="GitHub Profile" className="text-secondary hover:text-white transition-colors duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-lg p-1">
                 <FaGithub className="w-6 h-6 group-hover:scale-110 group-hover:text-emerald-400 transition-all" />
               </a>
-              <a href="https://linkedin.com/in/mukundjha01" target="_blank" rel="noreferrer" className="text-secondary hover:text-white transition-colors duration-300 group">
+              <a href="https://linkedin.com/in/mukundjha01" target="_blank" rel="noreferrer" aria-label="LinkedIn Profile" className="text-secondary hover:text-white transition-colors duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded-lg p-1">
                 <FaLinkedin className="w-6 h-6 group-hover:scale-110 group-hover:text-blue-400 transition-all" />
               </a>
             </div>

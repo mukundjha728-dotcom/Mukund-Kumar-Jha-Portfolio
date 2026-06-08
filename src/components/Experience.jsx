@@ -14,23 +14,23 @@ import { motion } from "framer-motion";
 const Experience = () => {
   const experiences = [
     {
-      title: "MERN Stack Developer Intern",
+      title: "Software Engineer Intern (MERN)",
       company: "Athenura",
       duration: "April 2026 - Present",
       points: [
-        "Developing scalable and robust full-stack web applications using MongoDB, Express.js, React.js, and Node.js.",
-        "Collaborating with the team to design and deploy RESTful APIs and modern user interfaces.",
-        "Enhancing database architecture and optimizing backend performance for large-scale data handling.",
+        "Engineered scalable full-stack web applications using the MERN stack (MongoDB, Express.js, React.js, Node.js).",
+        "Designed and implemented RESTful APIs to facilitate seamless data communication between microservices.",
+        "Optimized database schemas and queries, improving backend performance for high-volume data handling.",
       ],
     },
     {
-      title: "Frontend Web Developer Intern",
+      title: "Frontend Engineer Intern",
       company: "Graphura India Private Limited",
       duration: "Dec 2025 - March 2026",
       points: [
-        "Developed responsive and high-performance user interfaces using React.js, JavaScript, HTML, and CSS.",
-        "Built reusable components that improved development speed and maintainability by 30%.",
-        "Optimized applications for mobile responsiveness, resulting in a significantly faster load time and smoother UX.",
+        "Architected responsive, high-performance user interfaces using React.js and modern CSS frameworks.",
+        "Developed a robust library of reusable UI components, improving development velocity and code maintainability by 30%.",
+        "Implemented critical performance optimizations and accessibility features, resulting in significantly faster load times.",
       ],
     },
   ];
@@ -45,24 +45,24 @@ const Experience = () => {
 
   const skills = [
     {
-      category: "Frameworks & Libraries",
-      icon: <Code2 size={18} className="text-accent" />,
-      items: ["React.js", "Node.js", "Express.js", "Tailwind CSS", "Framer Motion"],
+      category: "Frontend & UI",
+      icon: <MonitorSmartphone size={18} className="text-accent" />,
+      items: ["React.js", "Next.js", "Tailwind CSS", "Framer Motion", "Responsive Design", "Accessibility"],
     },
     {
-      category: "Databases & Architecture",
+      category: "Backend & Database",
       icon: <Database size={18} className="text-accent" />,
-      items: ["MongoDB", "Mongoose", "RESTful APIs", "Component-Based Design"],
+      items: ["Node.js", "Express.js", "MongoDB", "Mongoose", "RESTful APIs"],
     },
     {
       category: "Languages & Core",
       icon: <Terminal size={18} className="text-accent" />,
-      items: ["JavaScript (ES6+)", "HTML5", "CSS3", "Web Performance Optimization"],
+      items: ["JavaScript (ES6+)", "TypeScript", "HTML5", "CSS3", "Component Architecture"],
     },
     {
-      category: "Tools & Environment",
-      icon: <Cpu size={18} className="text-accent" />,
-      items: ["Git", "GitHub", "VS Code", "Postman", "Vite"],
+      category: "Tools & DevOps",
+      icon: <Code2 size={18} className="text-accent" />,
+      items: ["Git", "GitHub", "Vite", "Performance Optimization", "Postman"],
     },
   ];
 

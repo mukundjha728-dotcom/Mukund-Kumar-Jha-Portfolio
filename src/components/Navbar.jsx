@@ -94,7 +94,7 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium tracking-wide text-secondary hover:text-white transition-colors relative group"
+                className="text-sm font-medium tracking-wide text-secondary hover:text-white transition-colors relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded px-1"
               >
                 {link.name}
                 <span className="absolute -bottom-1.5 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full rounded-full"></span>
@@ -105,7 +105,7 @@ const Navbar = () => {
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setResumeDropdownOpen((prev) => !prev)}
-                className="group flex items-center gap-2 px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-white font-medium text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(99,102,241,0.2)] hover:border-accent/50"
+                className="group flex items-center gap-2 px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-white font-medium text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(99,102,241,0.2)] hover:border-accent/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
                 <FileText className="w-4 h-4 text-accent group-hover:scale-110 transition-transform" />
                 <span>Resume</span>
@@ -137,7 +137,7 @@ const Navbar = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={() => setResumeDropdownOpen(false)}
-                          className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/8 hover:bg-white/[0.08] text-secondary hover:text-white transition-all duration-200 group"
+                          className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/8 hover:bg-white/[0.08] text-secondary hover:text-white transition-all duration-200 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                         >
                           <span className="p-1.5 rounded-lg bg-accent/10 text-accent group-hover:bg-accent/20 transition-colors">
                             {option.icon}
@@ -163,7 +163,7 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 -mr-2 text-primary hover:text-white focus:outline-none transition-colors"
+              className="p-2 -mr-2 text-primary hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded transition-colors"
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}

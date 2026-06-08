@@ -18,7 +18,7 @@ const Footer = () => {
               </span>
             </a>
             <p className="text-secondary leading-relaxed max-w-sm">
-              Building high-performance, scalable web applications with modern architectures.
+              Full Stack Software Engineer specializing in the MERN ecosystem and modern web architectures.
             </p>
           </div>
 
@@ -47,8 +47,8 @@ const Footer = () => {
                 href="https://github.com/mukundjha728-dotcom"
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-surface2 border border-border text-secondary hover:text-white hover:border-accent hover:bg-accent/10 transition-all"
-                aria-label="GitHub"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-surface2 border border-border text-secondary hover:text-white hover:border-accent hover:bg-accent/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                aria-label="GitHub Profile"
               >
                 <FaGithub size={18} />
               </a>
@@ -56,15 +56,15 @@ const Footer = () => {
                 href="https://linkedin.com/in/mukundjha01"
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-surface2 border border-border text-secondary hover:text-white hover:border-accent hover:bg-accent/10 transition-all"
-                aria-label="LinkedIn"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-surface2 border border-border text-secondary hover:text-white hover:border-accent hover:bg-accent/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                aria-label="LinkedIn Profile"
               >
                 <FaLinkedin size={18} />
               </a>
               <a
                 href="mailto:mukundjha728@gmail.com"
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-surface2 border border-border text-secondary hover:text-white hover:border-accent hover:bg-accent/10 transition-all"
-                aria-label="Email"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-surface2 border border-border text-secondary hover:text-white hover:border-accent hover:bg-accent/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                aria-label="Email Contact"
               >
                 <Mail size={18} />
               </a>
