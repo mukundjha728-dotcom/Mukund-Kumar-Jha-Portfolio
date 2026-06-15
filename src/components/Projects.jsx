@@ -32,7 +32,7 @@ const Projects = () => {
         "Architected a scalable e-commerce storefront using React.js. Implemented robust global state management for dynamic product filtering, utilizing reusable UI components to ensure a maintainable code structure and optimal frontend performance.",
       techStack: ["React.js", "Tailwind CSS", "Zustand"],
       githubLink: "https://github.com/mukundjha728-dotcom",
-      liveLink: "https://furniture-website-8sts.vercel.app/",
+      liveLink: "https://frinature-e-commerce.vercel.app/",
     },
     {
       title: "Email Verification Service",
