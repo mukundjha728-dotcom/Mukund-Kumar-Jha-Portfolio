@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { ExternalLink, Code2 } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const Projects = () => {
+  const [showAll, setShowAll] = useState(false);
+
   const projects = [
+    {
+      title: "Rajeev Engineering Workshop",
+      company: "Industrial Iron Fabrication Website",
+      description:
+        "A premium multi-language industrial fabrication website built for Rajeev Engineering Workshop showcasing 1000+ iron design catalogs including gates, shutters, railings, grills, sheds, furniture, and custom iron works. Includes product catalog filtering, SEO optimization, blog system, product detail pages, and local business targeting.",
+      techStack: ["React.js", "Tailwind CSS", "React Router", "i18next", "Vite", "SEO Optimization"],
+      githubLink: "https://github.com/mukundjha728-dotcom",
+      liveLink: "https://rajeev-engineering-workshop-six.vercel.app/",
+    },
     {
       title: "Import Export Platform",
       company: "VR AND Sons",
@@ -92,17 +103,19 @@ const Projects = () => {
           </p>
         </motion.div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
+        <div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {projects.map((project, index) => (
+          {(showAll ? projects : projects.slice(0, 6)).map((project, index) => (
             <motion.div
-              variants={fadeUp}
-              key={index}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut", delay: index * 0.1 } }
+              }}
+              key={project.title}
               className="glass-card p-8 hover:-translate-y-2 transition-all duration-300 flex flex-col h-full relative group hover:border-accent/50 hover:shadow-[0_10px_40px_-10px_rgba(99,102,241,0.2)]"
             >
               {/* Card header — code icon on the left, GitHub and live link icons on the right */}
@@ -158,15 +171,23 @@ const Projects = () => {
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-20 text-center"
+          className="mt-20 text-center flex flex-col sm:flex-row justify-center items-center gap-4"
         >
+          {projects.length > 6 && (
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="inline-flex items-center justify-center px-8 py-4 text-sm font-semibold text-white bg-white/5 border border-white/10 rounded-full hover:bg-white/10 transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_20px_rgba(99,102,241,0.2)] active:scale-95 gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            >
+              {showAll ? "View Less" : "View All"}
+            </button>
+          )}
           <a
             href="https://github.com/mukundjha728-dotcom"
             target="_blank"
