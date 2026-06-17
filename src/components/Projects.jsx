@@ -8,6 +8,15 @@ const Projects = () => {
 
   const projects = [
     {
+      title: "IndiaFy",
+      company: "Trust-first Hyperlocal Multi-Commerce Platform",
+      description:
+        "IndiaFy is a modern multi-commerce ecosystem combining Quick Commerce, Wholesale B2B, and Hyperlocal Marketplace into one unified platform for fast local shopping, bulk sourcing, and verified seller-based commerce.",
+      techStack: ["React.js", "Vite", "Tailwind CSS", "Zustand", "Node.js", "Express.js", "MongoDB"],
+      githubLink: "https://github.com/mukundjha728-dotcom",
+      liveLink: "https://india-fy.vercel.app/",
+    },
+    {
       title: "Rajeev Engineering Workshop",
       company: "Industrial Iron Fabrication Website",
       description:
