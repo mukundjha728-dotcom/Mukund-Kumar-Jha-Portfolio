@@ -8,6 +8,15 @@ const Projects = () => {
 
   const projects = [
     {
+      title: "Global Chanakya",
+      company: "Geopolitical Intelligence Platform",
+      description:
+        "Open-access geopolitical intelligence platform for real-time strategic analysis, conflict monitoring, country intelligence, and global risk forecasting. Features real-time intelligence reports, a country intelligence engine, conflict timeline system, leader intelligence pages, watchlists, an enterprise-grade admin panel, advanced SEO architecture, and security hardening.",
+      techStack: ["Next.js", "TypeScript", "MongoDB", "NextAuth", "Tailwind CSS", "Framer Motion", "Zod", "RBAC", "SEO Engine"],
+      githubLink: "https://github.com/mukundjha728-dotcom",
+      liveLink: "https://global-chanakya-web.vercel.app/",
+    },
+    {
       title: "IndiaFy",
       company: "Trust-first Hyperlocal Multi-Commerce Platform",
       description:
