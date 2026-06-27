@@ -79,7 +79,7 @@ const Hero = () => {
               <a href="https://github.com/mukundjha728-dotcom" target="_blank" rel="noreferrer" aria-label="GitHub Profile" className="text-secondary hover:text-white transition-colors duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-lg p-1">
                 <FaGithub className="w-6 h-6 group-hover:scale-110 group-hover:text-emerald-400 transition-all" />
               </a>
-              <a href="https://linkedin.com/in/mukundjha01" target="_blank" rel="noreferrer" aria-label="LinkedIn Profile" className="text-secondary hover:text-white transition-colors duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded-lg p-1">
+              <a href="https://linkedin.com/in/mukund-kumarjha" target="_blank" rel="noreferrer" aria-label="LinkedIn Profile" className="text-secondary hover:text-white transition-colors duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded-lg p-1">
                 <FaLinkedin className="w-6 h-6 group-hover:scale-110 group-hover:text-blue-400 transition-all" />
               </a>
             </div>
