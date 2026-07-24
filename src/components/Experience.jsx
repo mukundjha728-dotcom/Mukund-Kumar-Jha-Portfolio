@@ -16,7 +16,7 @@ const Experience = () => {
     {
       title: "Software Engineer Intern (MERN)",
       company: "Athenura",
-      duration: "April 2026 - Present",
+      duration: "April 2026 - July 2026",
       points: [
         "Engineered scalable full-stack web applications using the MERN stack (MongoDB, Express.js, React.js, Node.js).",
         "Designed and implemented RESTful APIs to facilitate seamless data communication between microservices.",
